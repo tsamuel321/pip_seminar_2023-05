@@ -1,0 +1,8 @@
+project:
+  title: "PIP Seminar"
+  preview:
+    port: 4200
+    browser: true
+
+editor: source
+

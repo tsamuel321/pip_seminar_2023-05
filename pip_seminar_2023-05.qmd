@@ -1,0 +1,59 @@
+---
+title: "PIP Seminar"
+subtitle: "API, Stata wrapper and R wrapper"
+format:
+  revealjs: 
+    theme: dark
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+---
+
+# PIP API
+
+## What's an API
+
+![](https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png){.absolute top="200" right="50"}
+
+## Access the PIP API
+
+![](img/access_PIP_api.png)
+
+## Documentation Page
+
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif){fig-align="center"}
+
+## API endpoint
+
+<https://api.worldbank.org/pip/v1/pip?country=COL&format=csv>
+
+## Breaking down the URL
+
+![](img/url_breakdown.png){.absolute top="200" right="50"}
+
+# Stata client (wrapper)
+
+## Installation
+
+### SSC
+
+``` stata
+ssc install pip
+```
+
+. . .
+
+### Github
+
+``` stata
+net install github, from("https://haghish.github.io/github/")  
+github install worldbank/pip
+```
+
+::: notes
+Install PIP Stata module from github by running the following command in Stata (It will be available from SSC soon.) net install github, from("https://haghish.github.io/github/")\
+github install worldbank/pip
+
+Note that there might be an issue when installing from Github if connected to the VPN. We recommend disconnecting from the VPN. For details see: https://worldbank.github.io/pip/ Please report any other issues installing the wrapper here: https://github.com/worldbank/pip/issues or send an email to pip\@worldbank.org
+:::
