@@ -95,6 +95,7 @@
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="pip_seminar_2023-05_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="tachyons.css">
   <link href="pip_seminar_2023-05_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="pip_seminar_2023-05_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="pip_seminar_2023-05_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -428,17 +429,23 @@
 <h1>Stata client (wrapper)</h1>
 
 </section>
-<section id="installation" class="slide level2">
-<h2>Installation</h2>
+<section id="installation" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Installation</h2>
 <h3 id="ssc">SSC</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">ssc</span> install pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
 <h3 id="github">Github</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>net install github, from(<span class="st">"https://haghish.github.io/github/"</span>)  </span>
 <span id="cb2-2"><a href="#cb2-2"></a>github install worldbank/pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="installation-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Installation</h2>
+<h3 id="ssc-1">SSC</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">ssc</span> install pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="github-1">Github</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>net install github, from(<span class="st">"https://haghish.github.io/github/"</span>)  </span>
+<span id="cb4-2"><a href="#cb4-2"></a>github install worldbank/pip, <span class="kw">version</span>(0.9.5.9002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 <aside class="notes">
-<p>Install PIP Stata module from github by running the following command in Stata (It will be available from SSC soon.) net install github, from(“https://haghish.github.io/github/”)<br>
-github install worldbank/pip</p>
 <p>Note that there might be an issue when installing from Github if connected to the VPN. We recommend disconnecting from the VPN. For details see: https://worldbank.github.io/pip/ Please report any other issues installing the wrapper here: https://github.com/worldbank/pip/issues or send an email to pip@worldbank.org</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -451,7 +458,87 @@ github install worldbank/pip</p>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<div class="footer footer-default">
+<aside><div>
+<ul>
+<li>For installation issues see <a href="https://worldbank.github.io/pip/" class="uri">https://worldbank.github.io/pip/</a></li>
+<li>Report issues in the Stata package at <a href="https://github.com/worldbank/pip/issues" class="uri">https://github.com/worldbank/pip/issues</a></li>
+</ul>
+</div></aside></section>
+<section id="installation-2" class="slide level2">
+<h2>Installation</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">SSC</a></li><li><a href="#tabset-1-2">Github</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">ssc</span> install pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>net install github, from(<span class="st">"https://haghish.github.io/github/"</span>)  </span>
+<span id="cb6-2"><a href="#cb6-2"></a>github install worldbank/pip, <span class="kw">version</span>(0.9.5.9002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>For installation issues see <a href="https://worldbank.github.io/pip/" class="uri">https://worldbank.github.io/pip/</a></li>
+<li>Report issues in the Stata package at <a href="https://github.com/worldbank/pip/issues" class="uri">https://github.com/worldbank/pip/issues</a></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="country-level-estimates" class="slide level2">
+<h2>Country-level estimates</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">/* To query poverty at \$2.15-a-day poverty line for Bangladesh in 2016 */</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>pip, country(bgd) <span class="fu">year</span>(2016) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">/* For extrapolated and interpolated data that </span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">underpin the global and regional poverty numbers, use </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">`fillgaps` option */</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">/* Data for all years or all countries */</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>pip, country(bgd) <span class="fu">year</span>(<span class="ot">all</span>) <span class="kw">clear</span> fillgaps</span>
+<span id="cb9-3"><a href="#cb9-3"></a>pip, country(<span class="ot">all</span>) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="global-and-regional-poverty-estimates" class="slide level2">
+<h2>Global and regional poverty estimates</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">/* Adding `wb` subcommand queries PIP for all regions </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">including the global estimates from 1981 onwards */</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>pip wb, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">/* Query a particular region or global values with `region()` */</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>pip wb, <span class="kw">clear</span> region(wld)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>pip wb, <span class="kw">clear</span> region(lac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><span class="f4">Regional classifications are based on PIP definition. <br> PIP regions do not match one-to-one with the World Bank regions. <br> PIP has a group for other high-income countries (OHI).</span></p>
+</div>
+</section>
+<section id="poverty-lines" class="slide level2">
+<h2>Poverty lines</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">/*Query poverty at other thresholds*/</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> <span class="co">///</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>fillgaps povline(6.85)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="fragment">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">/*Or multiple thresholds*/</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> <span class="co">///</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>fillgaps povline(2.15 3.65 6.85 10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="icp-ppp-rounds" class="slide level2">
+<h2>ICP (PPP) rounds</h2>
+<p>This is a <span class="red">red</span> text and I don’t know if it works.</p>
+
+<img src="img/WB-PIP-E-horizontal-RGB-med.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section></section>
