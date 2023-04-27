@@ -96,6 +96,7 @@
   </style>
   <link rel="stylesheet" href="pip_seminar_2023-05_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link rel="stylesheet" href="css/tachyons.css">
+  <link rel="stylesheet" href="css/my_style.css">
   <link href="pip_seminar_2023-05_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="pip_seminar_2023-05_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="pip_seminar_2023-05_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -400,133 +401,103 @@
 
 </section>
 <section>
-<section id="pip-api" class="title-slide slide level1 center">
-<h1>PIP API</h1>
+<section id="the-pip-stata-client-wrapper" class="title-slide slide level1 center">
+<h1>The <code>pip</code> Stata client (wrapper)</h1>
 
 </section>
-<section id="whats-an-api" class="slide level2">
-<h2>What’s an API</h2>
-<p><img data-src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png" class="absolute" style="top: 200px; right: 50px; "></p>
-</section>
-<section id="access-the-pip-api" class="slide level2">
-<h2>Access the PIP API</h2>
-
-<img data-src="img/access_PIP_api.png" class="r-stretch"></section>
-<section id="documentation-page" class="slide level2">
-<h2>Documentation Page</h2>
-
-<img data-src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif" class="r-stretch quarto-figure-center"></section>
-<section id="api-endpoint" class="slide level2">
-<h2>API endpoint</h2>
-<p><a href="https://api.worldbank.org/pip/v1/pip?country=COL&amp;format=csv" class="uri">https://api.worldbank.org/pip/v1/pip?country=COL&amp;format=csv</a></p>
-</section>
-<section id="breaking-down-the-url" class="slide level2">
-<h2>Breaking down the URL</h2>
-<p><img data-src="img/url_breakdown.png" class="absolute" style="top: 200px; right: 50px; "></p>
-</section></section>
-<section>
-<section id="stata-client-wrapper" class="title-slide slide level1 center">
-<h1>Stata client (wrapper)</h1>
-
-</section>
-<section id="installation" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Installation</h2>
+<section id="installation" class="slide level2">
+<h2>Installation</h2>
 <h3 id="ssc">SSC</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">ssc</span> install pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <h3 id="github">Github</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>net install github, from(<span class="st">"https://haghish.github.io/github/"</span>)  </span>
 <span id="cb2-2"><a href="#cb2-2"></a>github install worldbank/pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="installation-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Installation</h2>
+<section id="installation-1" class="slide level2">
+<h2>Installation</h2>
 <h3 id="ssc-1">SSC</h3>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">ssc</span> install pip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <h3 id="github-1">Github</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>net install github, from(<span class="st">"https://haghish.github.io/github/"</span>)  </span>
-<span id="cb4-2"><a href="#cb4-2"></a>github install worldbank/pip, <span class="kw">version</span>(0.9.5.9002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a>github install worldbank/pip, <span class="kw">version</span>(0.9.5.9003)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <aside><div>
 <ul>
-<li>For installation issues see <a href="https://worldbank.github.io/pip/" class="uri">https://worldbank.github.io/pip/</a></li>
-<li>Report issues in the Stata package at <a href="https://github.com/worldbank/pip/issues" class="uri">https://github.com/worldbank/pip/issues</a></li>
+<li>Official website <a href="https://worldbank.github.io/pip/" class="uri">https://worldbank.github.io/pip/</a></li>
+<li>Report issues at <a href="https://github.com/worldbank/pip/issues" class="uri">https://github.com/worldbank/pip/issues</a></li>
 </ul>
 </div></aside></section>
 <section id="country-level-estimates" class="slide level2">
 <h2>Country-level estimates</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">/* To query poverty at \$2.15-a-day poverty line for Bangladesh in 2016 */</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>pip, country(bgd) <span class="fu">year</span>(2016) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<div class="fragment">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">/* For extrapolated and interpolated data that </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">underpin the global and regional poverty numbers, use </span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">`fillgaps` option */</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-</div>
-<div class="fragment">
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">/* Data for all years or all countries */</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>pip, country(bgd) <span class="fu">year</span>(<span class="ot">all</span>) <span class="kw">clear</span> fillgaps</span>
-<span id="cb7-3"><a href="#cb7-3"></a>pip, country(<span class="ot">all</span>) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">/* To query poverty at $2.15-a-day poverty line for </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">all countries in all survey years*/</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>pip,  <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_clear.png" class="r-stretch quarto-figure-center"></section>
+<section id="country-level-estimates-1" class="slide level2">
+<h2>Country-level estimates</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">/* To query poverty at \$2.15-a-day poverty line </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">for Bangladesh in 2016 */</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>pip, country(mar) <span class="fu">year</span>(2013) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_mar_2013.png" class="r-stretch quarto-figure-center"></section>
+<section id="country-level-estimates-2" class="slide level2">
+<h2>Country-level estimates</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">/* For extrapolated and interpolated data that </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">underpin the global and regional poverty numbers, use </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">`fillgaps` option */</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_mar_2019_fillgaps.png" class="r-stretch quarto-figure-center"></section>
 <section id="global-and-regional-poverty-estimates" class="slide level2">
 <h2>Global and regional poverty estimates</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">/* Adding `wb` subcommand queries PIP for all regions </span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">including the global estimates from 1981 onwards */</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a>pip wb, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>pip wb, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img data-src="img/pip_wb.png" class="absolute" style="top: 200px; left: 50px; height: 300px; "></p>
 <div class="fragment">
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">/* Query a particular region or global values with `region()` */</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>pip wb, <span class="kw">clear</span> region(wld)</span>
 <span id="cb9-4"><a href="#cb9-4"></a>pip wb, <span class="kw">clear</span> region(lac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<p><span class="smaller">Regional classifications are based on PIP definition. <br> PIP regions do not match one-to-one with the World Bank regions. <br> PIP has a group for other high-income countries (OHI).</span></p>
+<p><img data-src="img/pip_wb_lac.png" class="absolute" style="top: 262px; left: 50px; height: 300px; "></p>
+<aside class="notes">
+<p>Adding <code>wb</code> subcommand queries PIP for all regions including the global estimates from 1981 onwards</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 <section id="poverty-lines" class="slide level2">
 <h2>Poverty lines</h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">/*Query poverty at other thresholds*/</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> <span class="co">///</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> <span class="co">///</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a>fillgaps povline(6.85)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<div class="fragment">
+
+<img data-src="img/pip_mar_2019_fillgaps_685.png" class="r-stretch quarto-figure-center"></section>
+<section id="poverty-lines-1" class="slide level2">
+<h2>Poverty lines</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">/*Or multiple thresholds*/</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> <span class="co">///</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>fillgaps povline(2.15 3.65 6.85 10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="icp-ppp-rounds" class="slide level2">
-<h2>ICP (PPP) rounds</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">/*By default, estimates are reported in the most recent </span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">PPP round*/</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a>pip, country(bgd) <span class="fu">year</span>(2016) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/bgd_2017PPP.png"></p>
-</figure>
-</div>
-<div class="fragment">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">/*But we could change it with the option `ppp()`*/</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>pip, country(bgd) <span class="fu">year</span>(2016) ppp(2011) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/bgd_2011PPP.png"></p>
-</figure>
-</div>
-</div>
-</section>
+<span id="cb11-4"><a href="#cb11-4"></a>fillgaps povline(2.15 3.65 6.85 10) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_mar_2019_fillgaps_mpl.png" class="r-stretch quarto-figure-center"></section>
 <section id="data-availability" class="slide level2 scrollable">
 <h2>Data availability</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>pip info, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>pip info, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/pip_info.png"></p>
@@ -534,32 +505,34 @@
 </div>
 
 <aside><div>
-<p>clickable info</p>
+<p>clickable</p>
 </div></aside></section>
 <section id="data-availability-1" class="slide level2">
 <h2>Data availability</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_info_mar.png" class="r-stretch quarto-figure-center"></section>
+<section id="data-availability-2" class="slide level2">
+<h2>Data availability</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="img/no_data.png" class="r-stretch quarto-figure-center"></section>
-<section id="vintages-and-servers" class="slide level2">
-<h2>Vintages and servers</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Production</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>pip <span class="kw">version</span>, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img data-src="img/versions_prod.png"></p>
-</div><div class="column" style="width:50%;">
-<p>QA</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>pip <span class="kw">version</span>, <span class="kw">clear</span> server(qa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img data-src="img/versions_qa.png"></p>
-</div>
-</div>
-</section>
+<section id="replicability" class="slide level2">
+<h2>Replicability</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>pip <span class="kw">version</span>, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/versions_prod.png" class="r-stretch"></section>
 <section id="towards-distributional-analysis" class="slide level2">
 <h2>Towards distributional analysis</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps popshare(0.5)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>disp poverty_line[1]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<aside class="notes">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps popshare(0.5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_mar_2019_fillgaps_popsahre05.png" class="r-stretch"></section>
+<section id="towards-distributional-analysis-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Towards distributional analysis</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource stata number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode stata hljs"><span id="cb16-1" class="hljs-ln-code"><a href="#cb16-1"></a>numlist <span class="st">".3(.1).8"</span></span>
+<span id="cb16-2" class="hljs-ln-code"><a href="#cb16-2"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps <span class="co">///</span></span>
+<span id="cb16-3" class="hljs-ln-code"><a href="#cb16-3"></a>    popshare(<span class="ot">`r(numlist)'</span>) n2disp(6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_mar_2019_fillgaps_popsahre_mps.png" class="r-stretch"><aside class="notes">
 <ul>
 <li><p>One could query many quantiles for a country, which would generate an approximate distribution of welfare in the country.</p></li>
 <li><p>Each query gives a poverty threshold (poverty line) and the share of people (headcount) living below it. This traces out the cumulative distribution function. Using the poverty gap, we can generate information about the average income below a particular quantile.</p></li>
@@ -577,23 +550,24 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="towards-distributional-analysis-1" class="slide level2">
-<h2>Towards distributional analysis</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>pip, country(bgd) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps popshare(0.5)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>disp poverty_line[1]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div style="text-align: center; margin-top: 1em">
+<section id="towards-distributional-analysis-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Towards distributional analysis</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource stata number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode stata hljs"><span id="cb17-1" class="hljs-ln-code"><a href="#cb17-1"></a>numlist <span class="st">".3(.1).8"</span></span>
+<span id="cb17-2" class="hljs-ln-code"><a href="#cb17-2"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps <span class="co">///</span></span>
+<span id="cb17-3" class="hljs-ln-code"><a href="#cb17-3"></a>    popshare(<span class="ot">`r(numlist)'</span>) n2disp(6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="img/pip_mar_2019_fillgaps_popsahre_mps.png" class="r-stretch"><div style="text-align: center; margin-top: 1em">
 <p><a href="https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles" data-preview-link="true" style="text-align: center">PIP Percentiles data</a></p>
 </div>
 </section>
 <section id="auxiliary-data" class="slide level2 scrollable">
 <h2>Auxiliary Data</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>pip tables, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>pip tables, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="img/aux_data.png" class="r-stretch"><p><br> Alternatively</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>pip tables, <span class="kw">table</span>(cpi) <span class="kw">clear</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a></span>
-<span id="cb21-3"><a href="#cb21-3"></a>pip tables, <span class="kw">table</span>(interpolated_means) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<img data-src="img/aux_data.png" class="r-stretch"><p>Alternatively</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>pip tables, <span class="kw">table</span>(cpi) <span class="kw">clear</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a>pip tables, <span class="kw">table</span>(interpolated_means) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="r-client-wrapper" class="title-slide slide level1 center">
@@ -602,17 +576,88 @@
 </section>
 <section id="installation-2" class="slide level2">
 <h2>Installation</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"worldbank/pipr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"worldbank/pipr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="better-go-to" class="slide level2">
 <h2>Better go to</h2>
 <div style="text-align: center; margin-top: 5em">
 <p><a href="https://worldbank.github.io/pipr/" class="f1" data-preview-link="true" style="text-align: center">https://worldbank.github.io/pipr/</a></p>
 </div>
+</section></section>
+<section>
+<section id="thanks." class="title-slide slide level1 center">
+<h1>Thanks.</h1>
 
-<img src="img/WB-PIP-E-horizontal-RGB-med.png" class="slide-logo r-stretch"><div class="footer footer-default">
+</section>
+<section class="slide level2">
 
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="annex" class="title-slide slide level1 center">
+<h1>Annex</h1>
+
+</section>
+<section id="whats-an-api" class="slide level2">
+<h2>What’s an API</h2>
+<p><img data-src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png" class="absolute" style="top: 200px; right: 50px; "></p>
+<aside class="notes">
+<p>API stands for <em>Application Programming Interface</em>, which a very generic, and somewhat intimidating name. In practice though, a data API is just a way to access data via a URL. However, with a data API, you get more control to get what you want.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="access-the-pip-api" class="slide level2">
+<h2>Access the PIP API</h2>
+
+<img data-src="img/access_PIP_api.png" class="r-stretch"></section>
+<section id="documentation-page" class="slide level2" data-background-image="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif" data-background-size="700px">
+<h2>Documentation Page</h2>
+<!-- ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif){fig-align="center"} -->
+<div class="footer">
+<p><a href="https://pip.worldbank.org/api">PIP API documentation</a></p>
+</div>
+</section>
+<section id="api-endpoint" class="slide level2">
+<h2>API endpoint</h2>
+<div style="text-align: center; margin-top: 5em">
+<p><a href="https://api.worldbank.org/pip/v1/pip?country=COL&amp;year=2018" class="f1" style="text-align: center">https://api.worldbank.org/pip/v1/pip?country=COL&amp;year=2018</a></p>
+</div>
+</section>
+<section id="breaking-down-the-url" class="slide level2">
+<h2>Breaking down the URL</h2>
+<p><img data-src="img/url_breakdown.png" class="absolute" style="top: 200px; right: 50px; "></p>
+<aside class="notes">
+<p>The domain name is where the API is being hosted</p>
+<p>the path indicates the location of the resource. It says which API will be in used and what version</p>
+<p>The endpoint is like the function or the command of the API. An API could have several endpoints.</p>
+<p>The string separator or question mark separates the function from its parameters.</p>
+<p>The query string are the parameters of the endpoint. Each is separated by the ampersand (and symbol, &amp;)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p><img src="img/WB-PIP-E-horizontal-RGB-med.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p><a href="https://pip.worldbank.org" class="uri">https://pip.worldbank.org</a></p>
 </div>
 </section></section>
     </div>
@@ -828,6 +873,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

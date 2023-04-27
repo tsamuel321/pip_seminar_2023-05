@@ -9,41 +9,23 @@ format:
       buttons: false
     preview-links: auto
     logo: img/WB-PIP-E-horizontal-RGB-med.png
-    css: css/tachyons.css
-    # css: https://raw.githubusercontent.com/tachyons-css/tachyons/main/css/tachyons.min.css
+    css: 
+      - css/tachyons.css
+      - css/my_style.css
+    footer: <https://pip.worldbank.org>
 ---
 
-# PIP API
+# The `pip` Stata client (wrapper)
 
-## What's an API
-
-![](https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png){.absolute top="200" right="50"}
-
-## Access the PIP API
-
-![](img/access_PIP_api.png)
-
-## Documentation Page
-
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif){fig-align="center"}
-
-## API endpoint
-
-<https://api.worldbank.org/pip/v1/pip?country=COL&format=csv>
-
-## Breaking down the URL
-
-![](img/url_breakdown.png){.absolute top="200" right="50"}
-
-# Stata client (wrapper)
-
-## Installation {auto-animate="true"}
+## Installation
 
 ### SSC
 
 ``` stata
 ssc install pip
 ```
+
+<br />
 
 ### Github
 
@@ -52,7 +34,7 @@ net install github, from("https://haghish.github.io/github/")
 github install worldbank/pip
 ```
 
-## Installation {auto-animate="true"}
+## Installation
 
 ### SSC
 
@@ -60,58 +42,67 @@ github install worldbank/pip
 ssc install pip
 ```
 
+<br />
+
 ### Github
+
+```{r}
+#| echo: false
+rl <- gh::gh("/repos/worldbank/pip/releases") |> 
+  {\(.) .[[1]]$tag_name}()
+```
 
 ``` stata
 net install github, from("https://haghish.github.io/github/")  
-github install worldbank/pip, version(0.9.5.9002)
+github install worldbank/pip, version(`r rl`)
 ```
 
 ::: aside
--   For installation issues see <https://worldbank.github.io/pip/>
--   Report issues in the Stata package at <https://github.com/worldbank/pip/issues>
+-   Official website <https://worldbank.github.io/pip/>
+-   Report issues at <https://github.com/worldbank/pip/issues>
 :::
 
 ## Country-level estimates
 
 ``` stata
-/* To query poverty at \$2.15-a-day poverty line for Bangladesh in 2016 */
+/* To query poverty at $2.15-a-day poverty line for 
+all countries in all survey years*/
 
-pip, country(bgd) year(2016) clear
+pip,  clear
 ```
 
-<br />
+![](img/pip_clear.png){fig-align="center"}
 
-. . .
+## Country-level estimates
+
+``` stata
+/* To query poverty at \$2.15-a-day poverty line 
+for Bangladesh in 2016 */
+
+pip, country(mar) year(2013) clear
+```
+
+![](img/pip_mar_2013.png){fig-align="center"}
+
+## Country-level estimates
 
 ``` stata
 /* For extrapolated and interpolated data that 
 underpin the global and regional poverty numbers, use 
 `fillgaps` option */
 
-pip, country(bgd) year(2019) clear fillgaps
+pip, country(mar) year(2019) clear fillgaps
 ```
 
-<br />
-
-. . .
-
-``` stata
-/* Data for all years or all countries */
-pip, country(bgd) year(all) clear fillgaps
-pip, country(all) year(2019) clear fillgaps
-```
+![](img/pip_mar_2019_fillgaps.png){fig-align="center"}
 
 ## Global and regional poverty estimates
 
 ``` stata
-/* Adding `wb` subcommand queries PIP for all regions 
-including the global estimates from 1981 onwards */
-
 pip wb, clear
 ```
 
-<br />
+![](img/pip_wb.png){.absolute top="200" left="50" height="300"}
 
 . . .
 
@@ -122,50 +113,33 @@ pip wb, clear region(wld)
 pip wb, clear region(lac)
 ```
 
-. . .
+![](img/pip_wb_lac.png){.absolute top="262" left="50" height="300"}
 
-[Regional classifications are based on PIP definition. <br /> PIP regions do not match one-to-one with the World Bank regions. <br /> PIP has a group for other high-income countries (OHI).]{.smaller}
+::: notes
+Adding `wb` subcommand queries PIP for all regions including the global estimates from 1981 onwards
+:::
 
 ## Poverty lines
 
 ``` stata
 /*Query poverty at other thresholds*/
 
-pip, country(bgd) year(2019) clear ///
+pip, country(mar) year(2019) clear ///
 fillgaps povline(6.85)
 ```
 
-<br />
+![](img/pip_mar_2019_fillgaps_685.png){fig-align="center"}
 
-. . .
+## Poverty lines
 
 ``` stata
 /*Or multiple thresholds*/
 
 pip, country(bgd) year(2019) clear ///
-fillgaps povline(2.15 3.65 6.85 10)
+fillgaps povline(2.15 3.65 6.85 10) 
 ```
 
-## ICP (PPP) rounds
-
-``` stata
-/*By default, estimates are reported in the most recent 
-PPP round*/
-
-pip, country(bgd) year(2016) clear
-```
-
-![](img/bgd_2017PPP.png){fig-align="center"}
-
-. . .
-
-``` stata
-/*But we could change it with the option `ppp()`*/
-
-pip, country(bgd) year(2016) ppp(2011) clear
-```
-
-![](img/bgd_2011PPP.png){fig-align="center"}
+![](img/pip_mar_2019_fillgaps_mpl.png){fig-align="center"}
 
 ## Data availability {.scrollable}
 
@@ -176,47 +150,46 @@ pip info, clear
 ![](img/pip_info.png){fig-align="center"}
 
 ::: aside
-clickable info
+clickable
 :::
 
 ## Data availability
 
+![](img/pip_info_mar.png){fig-align="center"}
+
+## Data availability
+
 ``` stata
-pip, country(bgd) year(2019) clear
+pip, country(mar) year(2019) clear
 ```
 
 ![](img/no_data.png){fig-align="center"}
 
-## Vintages and servers
-
-::: columns
-::: {.column width="50%"}
-Production
+## Replicability
 
 ``` stata
 pip version, clear
 ```
 
 ![](img/versions_prod.png)
-:::
-
-::: {.column width="50%"}
-QA
-
-``` stata
-pip version, clear server(qa)
-```
-
-![](img/versions_qa.png)
-:::
-:::
 
 ## Towards distributional analysis
 
 ``` stata
-pip, country(bgd) year(2019) clear fillgaps popshare(0.5)
-disp poverty_line[1]
+pip, country(mar) year(2019) clear fillgaps popshare(0.5)
 ```
+
+![](img/pip_mar_2019_fillgaps_popsahre05.png)
+
+## Towards distributional analysis {auto-animate="true"}
+
+``` stata
+numlist ".3(.1).8"
+pip, country(mar) year(2019) clear fillgaps ///
+    popshare(`r(numlist)') n2disp(6)
+```
+
+![](img/pip_mar_2019_fillgaps_popsahre_mps.png)
 
 ::: notes
 -   One could query many quantiles for a country, which would generate an approximate distribution of welfare in the country.
@@ -226,12 +199,15 @@ disp poverty_line[1]
 -   This is why we made a version of these country distributions (e.g. 100 percentiles) available for download
 :::
 
-## Towards distributional analysis
+## Towards distributional analysis {auto-animate="true"}
 
 ``` stata
-pip, country(bgd) year(2019) clear fillgaps popshare(0.5)
-disp poverty_line[1]
+numlist ".3(.1).8"
+pip, country(mar) year(2019) clear fillgaps ///
+    popshare(`r(numlist)') n2disp(6)
 ```
+
+![](img/pip_mar_2019_fillgaps_popsahre_mps.png)
 
 ::: {style="text-align: center; margin-top: 1em"}
 [PIP Percentiles data](https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles){preview-link="true" style="text-align: center"}
@@ -243,11 +219,9 @@ disp poverty_line[1]
 pip tables, clear
 ```
 
-<br />
-
 ![](img/aux_data.png)
 
-<br /> Alternatively
+Alternatively
 
 ``` stata
 pip tables, table(cpi) clear
@@ -268,4 +242,54 @@ devtools::install_github("worldbank/pipr")
 
 ::: {style="text-align: center; margin-top: 5em"}
 [https://worldbank.github.io/pipr/](https://worldbank.github.io/pipr/){.f1 preview-link="true" style="text-align: center"}
+:::
+
+# Thanks.
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+# Annex
+
+## What's an API
+
+![](https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png){.absolute top="200" right="50"}
+
+::: notes
+API stands for *Application Programming Interface*, which a very generic, and somewhat intimidating name. In practice though, a data API is just a way to access data via a URL. However, with a data API, you get more control to get what you want.
+:::
+
+## Access the PIP API
+
+![](img/access_PIP_api.png)
+
+## Documentation Page {background-image="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif" background-size="700px"}
+
+<!-- ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif){fig-align="center"} -->
+
+::: footer
+[PIP API documentation](https://pip.worldbank.org/api)
+:::
+
+## API endpoint
+
+::: {style="text-align: center; margin-top: 5em"}
+[https://api.worldbank.org/pip/v1/pip?country=COL&year=2018](https://api.worldbank.org/pip/v1/pip?country=COL&year=2018){.f1 style="text-align: center"}
+:::
+
+## Breaking down the URL
+
+![](img/url_breakdown.png){.absolute top="200" right="50"}
+
+::: notes
+The domain name is where the API is being hosted
+
+the path indicates the location of the resource. It says which API will be in used and what version
+
+The endpoint is like the function or the command of the API. An API could have several endpoints.
+
+The string separator or question mark separates the function from its parameters.
+
+The query string are the parameters of the endpoint. Each is separated by the ampersand (and symbol, &)
 :::
