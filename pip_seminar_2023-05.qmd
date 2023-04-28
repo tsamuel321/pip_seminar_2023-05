@@ -7,7 +7,7 @@ format:
     slide-number: true
     chalkboard: 
       buttons: false
-    preview-links: auto
+    # preview-links: auto
     logo: img/WB-PIP-E-horizontal-RGB-med.png
     css: 
       - css/tachyons.css
@@ -209,7 +209,7 @@ pip, country(mar) year(2019) clear fillgaps ///
 ![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
 
 ::: {style="text-align: center; margin-top: 1em"}
-[PIP Percentiles data](https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles){preview-link="true" style="text-align: center"}
+[PIP Percentiles data](https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles){style="text-align: center"}
 :::
 
 ## Auxiliary Data {.scrollable}
@@ -266,7 +266,7 @@ devtools::install_github("worldbank/pipr")
 ## Better go to
 
 ::: {style="text-align: center; margin-top: 5em"}
-[https://worldbank.github.io/pipr/](https://worldbank.github.io/pipr/){.f1 preview-link="true" style="text-align: center"}
+[https://worldbank.github.io/pipr/](https://worldbank.github.io/pipr/){.f1 style="text-align: center"}
 :::
 
 # Thanks.
