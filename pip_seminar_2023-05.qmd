@@ -263,15 +263,142 @@ pip tables, table(interpolated_means) clear
 devtools::install_github("worldbank/pipr")
 ```
 
-## Better go to
+## Webpage
 
 ::: {style="text-align: center; margin-top: 5em"}
 [https://worldbank.github.io/pipr/](https://worldbank.github.io/pipr/){.f1 style="text-align: center"}
 :::
 
-# Thanks.
-
 ------------------------------------------------------------------------
+
+```{r}
+#| echo: false
+#| cache: true
+
+library(pipr)
+library(ggplot2)
+library(tidyr)
+library(ggthemes)
+library(forcats)
+library(scales)
+library(dplyr)
+library(purrr)
+```
+
+::: panel-tabset
+### Code
+
+```{r}
+#| echo: true
+df <- get_wb() |>
+  filter(year > 1989, region_code == "WLD") |>
+  mutate(
+    pop_in_poverty = round(pop_in_poverty / 1000000, 0),
+    headcount = round(headcount, 3)
+  )
+
+headcount_col <- "#E69F00"
+
+gr <- ggplot(df, aes(x = year)) +
+  geom_text(aes(label = headcount * 100, 
+                y     = headcount), 
+            vjust   = 1, 
+            nudge_y = -0.02, 
+            color   = headcount_col) +
+  geom_text(aes(label = pop_in_poverty, 
+                y     = pop_in_poverty / 5000), 
+            vjust   = 0, 
+            nudge_y = 0.02) +
+  geom_line(aes(y  = headcount), color = headcount_col) +
+  geom_line(aes(y  = pop_in_poverty / 5000)) +
+  geom_point(aes(y = headcount), color = headcount_col) +
+  geom_point(aes(y = pop_in_poverty / 5000)) +
+  scale_y_continuous(
+    labels = scales::percent,
+    limits = c(0, 0.5),
+    breaks = c(0, 0.1, 0.2, 0.3, 0.4),
+    sec.axis = sec_axis(~.*5000, name = "Number of poor (million)",
+                        breaks = c(0, 500, 1000, 1500, 2000))) +
+  labs(
+    y = "Poverty rate (%)",
+    x = ""
+  ) +
+  theme_classic()
+```
+
+### plot
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+gr
+```
+:::
+
+## Ex. Number of poor by region
+
+::: panel-tabset
+### Code
+
+```{r}
+#| echo: true
+df <- get_wb() |>
+  filter(year > 1989 & year < 2019) |>
+  mutate(
+    pop_in_poverty = round(pop_in_poverty / 1000000, 0),
+    headcount = round(headcount, 3)
+  )
+
+regions <- df |>
+  filter(!region_code %in% c("WLD", "AFE", "AFW")) |>
+  mutate(
+    region_name = fct_relevel(region_name,
+                               c("Other high Income",
+                                 "Europe and Central Asia",
+                                 "Middle East and North Africa",
+                                 "Latin America and the Caribbean",
+                                 "East Asia and Pacific",
+                                 "South Asia",
+                                 "Sub-Saharan Africa"
+                                 ))
+  )
+
+world <- df |>
+  filter(region_code == "WLD")
+
+gr2 <- ggplot(regions, aes(y = pop_in_poverty, 
+                           x = year, 
+                           fill = region_name)) +
+  geom_area() +
+  scale_y_continuous(
+    limits = c(0, 2000),
+    breaks = c(0, 500, 1000, 1500, 2000)
+  ) +
+  scale_fill_tableau(palette = "Tableau 10") +
+  labs(
+    y = "Number of poor (million)",
+    x = ""
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom"
+  ) +
+  geom_line(data = world, 
+            size = rel(1.5), 
+            alpha =.5, 
+            linetype = "longdash")
+```
+
+### plot
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.5
+gr2
+```
+:::
+
+# Thanks.
 
 ------------------------------------------------------------------------
 

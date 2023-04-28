@@ -1,7 +1,8 @@
-base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
+pipr
+ggplot2
+tidyr
+ggthemes
+forcats
+scales
+dplyr
+purrr

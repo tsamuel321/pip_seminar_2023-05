@@ -594,18 +594,132 @@
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># install.packages("devtools")</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"worldbank/pipr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="better-go-to" class="slide level2">
-<h2>Better go to</h2>
+<section id="webpage" class="slide level2">
+<h2>Webpage</h2>
 <div style="text-align: center; margin-top: 5em">
 <p><a href="https://worldbank.github.io/pipr/" class="f1" style="text-align: center">https://worldbank.github.io/pipr/</a></p>
+</div>
+</section>
+<section id="ex.-global-poverty-trends" class="slide level2">
+<h2>Ex. Global poverty trends</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_wb</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1989</span>, region_code <span class="sc">==</span> <span class="st">"WLD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="at">pop_in_poverty =</span> <span class="fu">round</span>(pop_in_poverty <span class="sc">/</span> <span class="dv">1000000</span>, <span class="dv">0</span>),</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="at">headcount =</span> <span class="fu">round</span>(headcount, <span class="dv">3</span>)</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  )</span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a>headcount_col <span class="ot">&lt;-</span> <span class="st">"#E69F00"</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a></span>
+<span id="cb21-10"><a href="#cb21-10"></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> headcount <span class="sc">*</span> <span class="dv">100</span>, </span>
+<span id="cb21-12"><a href="#cb21-12"></a>                <span class="at">y     =</span> headcount), </span>
+<span id="cb21-13"><a href="#cb21-13"></a>            <span class="at">vjust   =</span> <span class="dv">1</span>, </span>
+<span id="cb21-14"><a href="#cb21-14"></a>            <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.02</span>, </span>
+<span id="cb21-15"><a href="#cb21-15"></a>            <span class="at">color   =</span> headcount_col) <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pop_in_poverty, </span>
+<span id="cb21-17"><a href="#cb21-17"></a>                <span class="at">y     =</span> pop_in_poverty <span class="sc">/</span> <span class="dv">5000</span>), </span>
+<span id="cb21-18"><a href="#cb21-18"></a>            <span class="at">vjust   =</span> <span class="dv">0</span>, </span>
+<span id="cb21-19"><a href="#cb21-19"></a>            <span class="at">nudge_y =</span> <span class="fl">0.02</span>) <span class="sc">+</span></span>
+<span id="cb21-20"><a href="#cb21-20"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y  =</span> headcount), <span class="at">color =</span> headcount_col) <span class="sc">+</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y  =</span> pop_in_poverty <span class="sc">/</span> <span class="dv">5000</span>)) <span class="sc">+</span></span>
+<span id="cb21-22"><a href="#cb21-22"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> headcount), <span class="at">color =</span> headcount_col) <span class="sc">+</span></span>
+<span id="cb21-23"><a href="#cb21-23"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> pop_in_poverty <span class="sc">/</span> <span class="dv">5000</span>)) <span class="sc">+</span></span>
+<span id="cb21-24"><a href="#cb21-24"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb21-25"><a href="#cb21-25"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent,</span>
+<span id="cb21-26"><a href="#cb21-26"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>),</span>
+<span id="cb21-27"><a href="#cb21-27"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>),</span>
+<span id="cb21-28"><a href="#cb21-28"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">*</span><span class="dv">5000</span>, <span class="at">name =</span> <span class="st">"Number of poor (million)"</span>,</span>
+<span id="cb21-29"><a href="#cb21-29"></a>                        <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>, <span class="dv">2000</span>))) <span class="sc">+</span></span>
+<span id="cb21-30"><a href="#cb21-30"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-31"><a href="#cb21-31"></a>    <span class="at">y =</span> <span class="st">"Poverty rate (%)"</span>,</span>
+<span id="cb21-32"><a href="#cb21-32"></a>    <span class="at">x =</span> <span class="st">""</span></span>
+<span id="cb21-33"><a href="#cb21-33"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-34"><a href="#cb21-34"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="pip_seminar_2023-05_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ex.-number-of-poor-by-region" class="slide level2">
+<h2>Ex. Number of poor by region</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_wb</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1989</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="at">pop_in_poverty =</span> <span class="fu">round</span>(pop_in_poverty <span class="sc">/</span> <span class="dv">1000000</span>, <span class="dv">0</span>),</span>
+<span id="cb22-5"><a href="#cb22-5"></a>    <span class="at">headcount =</span> <span class="fu">round</span>(headcount, <span class="dv">3</span>)</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  )</span>
+<span id="cb22-7"><a href="#cb22-7"></a></span>
+<span id="cb22-8"><a href="#cb22-8"></a>regions <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">filter</span>(<span class="sc">!</span>region_code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"WLD"</span>, <span class="st">"AFE"</span>, <span class="st">"AFW"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-11"><a href="#cb22-11"></a>    <span class="at">region_name =</span> <span class="fu">fct_relevel</span>(region_name,</span>
+<span id="cb22-12"><a href="#cb22-12"></a>                               <span class="fu">c</span>(<span class="st">"Other high Income"</span>,</span>
+<span id="cb22-13"><a href="#cb22-13"></a>                                 <span class="st">"Europe and Central Asia"</span>,</span>
+<span id="cb22-14"><a href="#cb22-14"></a>                                 <span class="st">"Middle East and North Africa"</span>,</span>
+<span id="cb22-15"><a href="#cb22-15"></a>                                 <span class="st">"Latin America and the Caribbean"</span>,</span>
+<span id="cb22-16"><a href="#cb22-16"></a>                                 <span class="st">"East Asia and Pacific"</span>,</span>
+<span id="cb22-17"><a href="#cb22-17"></a>                                 <span class="st">"South Asia"</span>,</span>
+<span id="cb22-18"><a href="#cb22-18"></a>                                 <span class="st">"Sub-Saharan Africa"</span></span>
+<span id="cb22-19"><a href="#cb22-19"></a>                                 ))</span>
+<span id="cb22-20"><a href="#cb22-20"></a>  )</span>
+<span id="cb22-21"><a href="#cb22-21"></a></span>
+<span id="cb22-22"><a href="#cb22-22"></a>world <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb22-23"><a href="#cb22-23"></a>  <span class="fu">filter</span>(region_code <span class="sc">==</span> <span class="st">"WLD"</span>)</span>
+<span id="cb22-24"><a href="#cb22-24"></a></span>
+<span id="cb22-25"><a href="#cb22-25"></a>gr2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(regions, <span class="fu">aes</span>(<span class="at">y =</span> pop_in_poverty, </span>
+<span id="cb22-26"><a href="#cb22-26"></a>                           <span class="at">x =</span> year, </span>
+<span id="cb22-27"><a href="#cb22-27"></a>                           <span class="at">fill =</span> region_name)) <span class="sc">+</span></span>
+<span id="cb22-28"><a href="#cb22-28"></a>  <span class="fu">geom_area</span>() <span class="sc">+</span></span>
+<span id="cb22-29"><a href="#cb22-29"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb22-30"><a href="#cb22-30"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2000</span>),</span>
+<span id="cb22-31"><a href="#cb22-31"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>, <span class="dv">2000</span>)</span>
+<span id="cb22-32"><a href="#cb22-32"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-33"><a href="#cb22-33"></a>  <span class="fu">scale_fill_tableau</span>(<span class="at">palette =</span> <span class="st">"Tableau 10"</span>) <span class="sc">+</span></span>
+<span id="cb22-34"><a href="#cb22-34"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-35"><a href="#cb22-35"></a>    <span class="at">y =</span> <span class="st">"Number of poor (million)"</span>,</span>
+<span id="cb22-36"><a href="#cb22-36"></a>    <span class="at">x =</span> <span class="st">""</span></span>
+<span id="cb22-37"><a href="#cb22-37"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-38"><a href="#cb22-38"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb22-39"><a href="#cb22-39"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-40"><a href="#cb22-40"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb22-41"><a href="#cb22-41"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-42"><a href="#cb22-42"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> world, </span>
+<span id="cb22-43"><a href="#cb22-43"></a>            <span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), </span>
+<span id="cb22-44"><a href="#cb22-44"></a>            <span class="at">alpha =</span>.<span class="dv">5</span>, </span>
+<span id="cb22-45"><a href="#cb22-45"></a>            <span class="at">linetype =</span> <span class="st">"longdash"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="pip_seminar_2023-05_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section></section>
 <section>
 <section id="thanks." class="title-slide slide level1 center">
 <h1>Thanks.</h1>
-
-</section>
-<section class="slide level2">
 
 </section>
 <section class="slide level2">
