@@ -48,6 +48,7 @@ ssc install pip
 
 ```{r}
 #| echo: false
+#| cache: true
 rl <- gh::gh("/repos/worldbank/pip/releases") |> 
   {\(.) .[[1]]$tag_name}()
 ```
@@ -104,9 +105,11 @@ pip wb, clear
 
 ![](img/pip_wb.png){.absolute top="200" left="50" height="300"}
 
-. . .
+## Global and regional poverty estimates
 
 ``` stata
+pip wb, clear
+
 /* Query a particular region or global values with `region()` */
 
 pip wb, clear region(wld)
@@ -155,10 +158,6 @@ clickable
 
 ## Data availability
 
-![](img/pip_info_mar.png){fig-align="center"}
-
-## Data availability
-
 ``` stata
 pip, country(mar) year(2019) clear
 ```
@@ -171,7 +170,7 @@ pip, country(mar) year(2019) clear
 pip version, clear
 ```
 
-![](img/versions_prod.png)
+![](img/versions_prod.png){.absolute top="200" left="200" height="300"}
 
 ## Towards distributional analysis
 
@@ -179,7 +178,7 @@ pip version, clear
 pip, country(mar) year(2019) clear fillgaps popshare(0.5)
 ```
 
-![](img/pip_mar_2019_fillgaps_popsahre05.png)
+![](img/pip_mar_2019_fillgaps_popsahre05.png){fig-align="center"}
 
 ## Towards distributional analysis {auto-animate="true"}
 
@@ -189,7 +188,7 @@ pip, country(mar) year(2019) clear fillgaps ///
     popshare(`r(numlist)') n2disp(6)
 ```
 
-![](img/pip_mar_2019_fillgaps_popsahre_mps.png)
+![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
 
 ::: notes
 -   One could query many quantiles for a country, which would generate an approximate distribution of welfare in the country.
@@ -207,7 +206,7 @@ pip, country(mar) year(2019) clear fillgaps ///
     popshare(`r(numlist)') n2disp(6)
 ```
 
-![](img/pip_mar_2019_fillgaps_popsahre_mps.png)
+![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
 
 ::: {style="text-align: center; margin-top: 1em"}
 [PIP Percentiles data](https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles){preview-link="true" style="text-align: center"}
@@ -219,7 +218,7 @@ pip, country(mar) year(2019) clear fillgaps ///
 pip tables, clear
 ```
 
-![](img/aux_data.png)
+![](img/aux_data.png){fig-align="center"}
 
 Alternatively
 
@@ -228,6 +227,32 @@ pip tables, table(cpi) clear
 
 pip tables, table(interpolated_means) clear
 ```
+
+## Help file
+
+::: r-stack
+![](img/help1.png){.fragment .fade-in-then-semi-out}
+
+![](img/help2.png){.absolute .fragment .fade-in-then-semi-out top="0" left="0"}
+
+![](img/help3.png){.absolute .fragment .fade-in-then-semi-out top="100" left="500"}
+
+![](img/help4.png){.absolute .fragment .fade-in-then-semi-out top="200" left="-100"}
+
+![](img/help5.png){.absolute .fragment .fade-in-then-semi-out top="250" left="200"}
+
+![](img/help6_1.png){.absolute .fragment .fade-in-then-semi-out top="0" left="500"}
+
+![](img/help6_2.png){.absolute .fragment .fade-in-then-semi-out top="0" left="500"}
+
+![](img/help6_3.png){.absolute .fragment .fade-in-then-semi-out top="0" left="500"}
+
+![](img/help7_1.png){.absolute .fragment .fade-in-then-semi-out top="50" left="-100"}
+
+![](img/help7_2.png){.absolute .fragment .fade-in-then-semi-out top="50" left="-100"}
+
+![](img/help8.png){.absolute .fragment .fade-in-then-out .grow top="0" left="150"}
+:::
 
 # R Client (wrapper)
 

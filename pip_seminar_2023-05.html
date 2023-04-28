@@ -458,11 +458,15 @@
 <h2>Global and regional poverty estimates</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>pip wb, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img data-src="img/pip_wb.png" class="absolute" style="top: 200px; left: 50px; height: 300px; "></p>
-<div class="fragment">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">/* Query a particular region or global values with `region()` */</span></span>
+</section>
+<section id="global-and-regional-poverty-estimates-1" class="slide level2">
+<h2>Global and regional poverty estimates</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>pip wb, <span class="kw">clear</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>pip wb, <span class="kw">clear</span> region(wld)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>pip wb, <span class="kw">clear</span> region(lac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">/* Query a particular region or global values with `region()` */</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>pip wb, <span class="kw">clear</span> region(wld)</span>
+<span id="cb9-6"><a href="#cb9-6"></a>pip wb, <span class="kw">clear</span> region(lac)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img data-src="img/pip_wb_lac.png" class="absolute" style="top: 262px; left: 50px; height: 300px; "></p>
 <aside class="notes">
 <p>Adding <code>wb</code> subcommand queries PIP for all regions including the global estimates from 1981 onwards</p>
@@ -477,7 +481,6 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</div>
 </section>
 <section id="poverty-lines" class="slide level2">
 <h2>Poverty lines</h2>
@@ -509,30 +512,26 @@
 </div></aside></section>
 <section id="data-availability-1" class="slide level2">
 <h2>Data availability</h2>
-
-<img data-src="img/pip_info_mar.png" class="r-stretch quarto-figure-center"></section>
-<section id="data-availability-2" class="slide level2">
-<h2>Data availability</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="img/no_data.png" class="r-stretch quarto-figure-center"></section>
 <section id="replicability" class="slide level2">
 <h2>Replicability</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>pip <span class="kw">version</span>, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-<img data-src="img/versions_prod.png" class="r-stretch"></section>
+<p><img data-src="img/versions_prod.png" class="absolute" style="top: 200px; left: 200px; height: 300px; "></p>
+</section>
 <section id="towards-distributional-analysis" class="slide level2">
 <h2>Towards distributional analysis</h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps popshare(0.5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="img/pip_mar_2019_fillgaps_popsahre05.png" class="r-stretch"></section>
+<img data-src="img/pip_mar_2019_fillgaps_popsahre05.png" class="r-stretch quarto-figure-center"></section>
 <section id="towards-distributional-analysis-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Towards distributional analysis</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource stata number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode stata hljs"><span id="cb16-1" class="hljs-ln-code"><a href="#cb16-1"></a>numlist <span class="st">".3(.1).8"</span></span>
 <span id="cb16-2" class="hljs-ln-code"><a href="#cb16-2"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps <span class="co">///</span></span>
 <span id="cb16-3" class="hljs-ln-code"><a href="#cb16-3"></a>    popshare(<span class="ot">`r(numlist)'</span>) n2disp(6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="img/pip_mar_2019_fillgaps_popsahre_mps.png" class="r-stretch"><aside class="notes">
+<img data-src="img/pip_mar_2019_fillgaps_popsahre_mps.png" class="r-stretch quarto-figure-center"><aside class="notes">
 <ul>
 <li><p>One could query many quantiles for a country, which would generate an approximate distribution of welfare in the country.</p></li>
 <li><p>Each query gives a poverty threshold (poverty line) and the share of people (headcount) living below it. This traces out the cumulative distribution function. Using the poverty gap, we can generate information about the average income below a particular quantile.</p></li>
@@ -556,7 +555,7 @@
 <span id="cb17-2" class="hljs-ln-code"><a href="#cb17-2"></a>pip, country(mar) <span class="fu">year</span>(2019) <span class="kw">clear</span> fillgaps <span class="co">///</span></span>
 <span id="cb17-3" class="hljs-ln-code"><a href="#cb17-3"></a>    popshare(<span class="ot">`r(numlist)'</span>) n2disp(6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="img/pip_mar_2019_fillgaps_popsahre_mps.png" class="r-stretch"><div style="text-align: center; margin-top: 1em">
+<img data-src="img/pip_mar_2019_fillgaps_popsahre_mps.png" class="r-stretch quarto-figure-center"><div style="text-align: center; margin-top: 1em">
 <p><a href="https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles" data-preview-link="true" style="text-align: center">PIP Percentiles data</a></p>
 </div>
 </section>
@@ -564,10 +563,26 @@
 <h2>Auxiliary Data</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>pip tables, <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="img/aux_data.png" class="r-stretch"><p>Alternatively</p>
+<img data-src="img/aux_data.png" class="r-stretch quarto-figure-center"><p>Alternatively</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>pip tables, <span class="kw">table</span>(cpi) <span class="kw">clear</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a></span>
 <span id="cb19-3"><a href="#cb19-3"></a>pip tables, <span class="kw">table</span>(interpolated_means) <span class="kw">clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="help-file" class="slide level2">
+<h2>Help file</h2>
+<div class="r-stack">
+<p><img data-src="img/help1.png" class="fragment fade-in-then-semi-out"></p>
+<p><img data-src="img/help2.png" class="absolute fragment fade-in-then-semi-out" style="top: 0px; left: 0px; "></p>
+<p><img data-src="img/help3.png" class="absolute fragment fade-in-then-semi-out" style="top: 100px; left: 500px; "></p>
+<p><img data-src="img/help4.png" class="absolute fragment fade-in-then-semi-out" style="top: 200px; left: -100px; "></p>
+<p><img data-src="img/help5.png" class="absolute fragment fade-in-then-semi-out" style="top: 250px; left: 200px; "></p>
+<p><img data-src="img/help6_1.png" class="absolute fragment fade-in-then-semi-out" style="top: 0px; left: 500px; "></p>
+<p><img data-src="img/help6_2.png" class="absolute fragment fade-in-then-semi-out" style="top: 0px; left: 500px; "></p>
+<p><img data-src="img/help6_3.png" class="absolute fragment fade-in-then-semi-out" style="top: 0px; left: 500px; "></p>
+<p><img data-src="img/help7_1.png" class="absolute fragment fade-in-then-semi-out" style="top: 50px; left: -100px; "></p>
+<p><img data-src="img/help7_2.png" class="absolute fragment fade-in-then-semi-out" style="top: 50px; left: -100px; "></p>
+<p><img data-src="img/help8.png" class="absolute fragment fade-in-then-out grow" style="top: 0px; left: 150px; "></p>
+</div>
 </section></section>
 <section>
 <section id="r-client-wrapper" class="title-slide slide level1 center">
