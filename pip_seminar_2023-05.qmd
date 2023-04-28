@@ -1,6 +1,6 @@
 ---
-title: "PIP Seminar"
-subtitle: "API, Stata wrapper and R wrapper"
+title: "Stata and R PIP clients"
+subtitle: "Accessing the World Bank's estimates of poverty and inequality"
 format:
   revealjs:
     theme: dark
@@ -16,6 +16,10 @@ format:
 ---
 
 # The `pip` Stata client (wrapper)
+
+::: notes
+Even though we have made the webpage as rich and interactive as possible, some of you may need more control on accessing the PIP data in your own projects. This is why we have developed two clients, one in stata and one R, for users to directly interact with the PIP API. I won't go into the details of what an API, but just for now let me say that an API is the interface that allows to get the data that we need. But that interface is software agnostic, that is, it does not depend on any software whatsoever, so build the clients, the interpreters that interact with interface directly, so you don't have to.
+:::
 
 ## Installation
 
@@ -178,6 +182,10 @@ pip version, clear
 pip, country(mar) year(2019) clear fillgaps popshare(0.5)
 ```
 
+::: notes
+The default use of pip is to get the poverty headcount (or share of the population) in the welfare distribution that falls below a particular monetary threshold. However, the inverse operation is also available in pip. You can provide the share of the population and get in return the monetary value of the welfare distribution. For example, if you want to know the median of the distribution, you enter 0.5, which is the 50% of the population, into the option popshare() and pip will return the monetary value below which the lowest 50% of the population falls. Like this...
+:::
+
 ![](img/pip_mar_2019_fillgaps_popsahre05.png){fig-align="center"}
 
 ## Towards distributional analysis {auto-animate="true"}
@@ -191,11 +199,7 @@ pip, country(mar) year(2019) clear fillgaps ///
 ![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
 
 ::: notes
--   One could query many quantiles for a country, which would generate an approximate distribution of welfare in the country.
-
--   Each query gives a poverty threshold (poverty line) and the share of people (headcount) living below it. This traces out the cumulative distribution function. Using the poverty gap, we can generate information about the average income below a particular quantile.
-
--   This is why we made a version of these country distributions (e.g. 100 percentiles) available for download
+By doing this many times, one could generate an approximate cumulative distribution of welfare for a particular country and, by making use of the poverty gap, we can estimate the average income below a particular quantile. Since many people is very interested in this, we have estimated the percentiles of every country/year available in PIP and made them available in the Data Hub of the WB. Eventually, this data will also be available through the API (and the Stata and R wrappers)
 :::
 
 ## Towards distributional analysis {auto-animate="true"}
@@ -256,6 +260,14 @@ pip tables, table(interpolated_means) clear
 
 # R Client (wrapper)
 
+```{r}
+#| echo: false
+#| cache: false
+library(pipr)
+library(tidyverse)
+library(ggthemes)
+```
+
 ## Installation
 
 ``` r
@@ -269,27 +281,101 @@ devtools::install_github("worldbank/pipr")
 [https://worldbank.github.io/pipr/](https://worldbank.github.io/pipr/){.f1 style="text-align: center"}
 :::
 
-------------------------------------------------------------------------
+## Country-level estimates
 
 ```{r}
-#| echo: false
-#| cache: true
-
-library(pipr)
-library(ggplot2)
-library(tidyr)
-library(ggthemes)
-library(forcats)
-library(scales)
-library(dplyr)
-library(purrr)
+#| echo: true
+pipr::get_stats() |> 
+  select(c(country_code, year, poverty_line, headcount))
 ```
+
+## Country-level estimates
+
+```{r}
+#| echo: true
+pipr::get_stats(country = "MAR") |> 
+  select(c(country_code, year, poverty_line, headcount))
+```
+
+## Country-level estimates
+
+```{r}
+#| echo: true
+pipr::get_stats(country = c("COL", "MAR")) |> 
+  arrange(year) |> 
+  select(c(country_code, year, poverty_line, headcount))
+```
+
+## Country-level estimates
+
+```{r}
+#| echo: true
+pipr::get_stats(country = "COL", year = c(2012, 2018))  |> 
+  select(c(country_code, year, poverty_line, headcount))
+```
+
+## Interporlated and Extrapolated values {auto-animate="true"}
+
+```{r}
+#| echo: true
+pipr::get_stats(country = "HTI")  |> 
+  select(c(country_code, year, poverty_line, headcount))
+```
+
+## Interporlated and Extrapolated values {auto-animate="true"}
+
+```{r}
+#| echo: true
+pipr::get_stats(country = "HTI", fill_gaps = TRUE)   |> 
+  select(c(country_code, year, poverty_line, headcount))
+```
+
+## Poverty line
+
+```{r}
+#| echo: true
+pipr::get_stats(country = "COL", povline = 3)  |> 
+  select(c(country_code, year, poverty_line, headcount))
+```
+
+## Multiple Poverty lines
+
+```{r}
+#| echo: true
+
+
+povlines <- c(2, 4, 6, 10)
+map_df(.x      = povlines, 
+       .f      = pipr::get_stats, 
+       country = "COL",
+       year    = 2012) |> 
+  select(c(country_code, year, poverty_line, headcount))
+
+```
+
+## Global estimates
+
+```{r}
+#| echo: true
+pipr::get_wb()  |> 
+  arrange(year) |> 
+  select(c(region_code, year, poverty_line, headcount))
+
+```
+
+## Many more functions
+
+![](img/pipr_functions.png){fig-align="center"}
+
+------------------------------------------------------------------------
 
 ::: panel-tabset
 ### Code
 
 ```{r}
 #| echo: true
+
+# Global poverty trends 1990-2019
 df <- get_wb() |>
   filter(year > 1989, region_code == "WLD") |>
   mutate(
@@ -320,6 +406,7 @@ gr <- ggplot(df, aes(x = year)) +
     sec.axis = sec_axis(~.*5000, name = "Number of poor (million)",
                         breaks = c(0, 500, 1000, 1500, 2000))) +
   labs(
+    title = "Global poverty trends 1990-2019",
     y = "Poverty rate (%)",
     x = ""
   ) +
@@ -335,13 +422,15 @@ gr
 ```
 :::
 
-## Ex. Number of poor by region
+------------------------------------------------------------------------
 
 ::: panel-tabset
 ### Code
 
 ```{r}
 #| echo: true
+
+# Number of poor by region
 df <- get_wb() |>
   filter(year > 1989 & year < 2019) |>
   mutate(
@@ -376,6 +465,7 @@ gr2 <- ggplot(regions, aes(y = pop_in_poverty,
   ) +
   scale_fill_tableau(palette = "Tableau 10") +
   labs(
+    title = "Number of poor by region",
     y = "Number of poor (million)",
     x = ""
   ) +
@@ -393,7 +483,7 @@ gr2 <- ggplot(regions, aes(y = pop_in_poverty,
 
 ```{r}
 #| fig-width: 10
-#| fig-height: 4.5
+#| fig-height: 6
 gr2
 ```
 :::
@@ -402,9 +492,11 @@ gr2
 
 ------------------------------------------------------------------------
 
-# Annex
+##  {visibility="uncounted"}
 
-## What's an API
+# Annex {visibility="uncounted"}
+
+## What's an API {visibility="uncounted"}
 
 ![](https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png){.absolute top="200" right="50"}
 
@@ -412,11 +504,11 @@ gr2
 API stands for *Application Programming Interface*, which a very generic, and somewhat intimidating name. In practice though, a data API is just a way to access data via a URL. However, with a data API, you get more control to get what you want.
 :::
 
-## Access the PIP API
+## Access the PIP API {visibility="uncounted"}
 
 ![](img/access_PIP_api.png)
 
-## Documentation Page {background-image="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif" background-size="700px"}
+## Documentation Page {visibility="uncounted"} {background-image="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif" background-size="700px"}
 
 <!-- ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif){fig-align="center"} -->
 
@@ -424,13 +516,13 @@ API stands for *Application Programming Interface*, which a very generic, and so
 [PIP API documentation](https://pip.worldbank.org/api)
 :::
 
-## API endpoint
+## API endpoint {visibility="uncounted"}
 
 ::: {style="text-align: center; margin-top: 5em"}
 [https://api.worldbank.org/pip/v1/pip?country=COL&year=2018](https://api.worldbank.org/pip/v1/pip?country=COL&year=2018){.f1 style="text-align: center"}
 :::
 
-## Breaking down the URL
+## Breaking down the URL {visibility="uncounted"}
 
 ![](img/url_breakdown.png){.absolute top="200" right="50"}
 
