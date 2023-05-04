@@ -17,10 +17,6 @@ format:
 
 # The `pip` Stata client (wrapper)
 
-::: notes
-Even though we have made the webpage as rich and interactive as possible, some of you may need more control on accessing the PIP data in your own projects. This is why we have developed two clients, one in stata and one R, for users to directly interact with the PIP API. I won't go into the details of what an API, but just for now let me say that an API is the interface that allows to get the data that we need. But that interface is software agnostic, that is, it does not depend on any software whatsoever, so build the clients, the interpreters that interact with interface directly, so you don't have to.
-:::
-
 ## Installation
 
 ### SSC
@@ -122,10 +118,6 @@ pip wb, clear region(lac)
 
 ![](img/pip_wb_lac.png){.absolute top="262" left="50" height="300"}
 
-::: notes
-Adding `wb` subcommand queries PIP for all regions including the global estimates from 1981 onwards
-:::
-
 ## Poverty lines
 
 ``` stata
@@ -182,10 +174,6 @@ pip version, clear
 pip, country(mar) year(2019) clear fillgaps popshare(0.5)
 ```
 
-::: notes
-The default use of pip is to get the poverty headcount (or share of the population) in the welfare distribution that falls below a particular monetary threshold. However, the inverse operation is also available in pip. You can provide the share of the population and get in return the monetary value of the welfare distribution. For example, if you want to know the median of the distribution, you enter 0.5, which is the 50% of the population, into the option popshare() and pip will return the monetary value below which the lowest 50% of the population falls. Like this...
-:::
-
 ![](img/pip_mar_2019_fillgaps_popsahre05.png){fig-align="center"}
 
 ## Towards distributional analysis {auto-animate="true"}
@@ -197,10 +185,6 @@ pip, country(mar) year(2019) clear fillgaps ///
 ```
 
 ![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
-
-::: notes
-By doing this many times, one could generate an approximate cumulative distribution of welfare for a particular country and, by making use of the poverty gap, we can estimate the average income below a particular quantile. Since many people is very interested in this, we have estimated the percentiles of every country/year available in PIP and made them available in the Data Hub of the WB. Eventually, this data will also be available through the API (and the Stata and R wrappers)
-:::
 
 ## Towards distributional analysis {auto-animate="true"}
 
@@ -489,51 +473,3 @@ gr2
 :::
 
 # Thanks.
-
-------------------------------------------------------------------------
-
-##  {visibility="uncounted"}
-
-# Annex {visibility="uncounted"}
-
-## What's an API {visibility="uncounted"}
-
-![](https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27f810ea-2722-455a-9a0d-bb5b54c28393/api-based-platforms-api-diagram.png){.absolute top="200" right="50"}
-
-::: notes
-API stands for *Application Programming Interface*, which a very generic, and somewhat intimidating name. In practice though, a data API is just a way to access data via a URL. However, with a data API, you get more control to get what you want.
-:::
-
-## Access the PIP API {visibility="uncounted"}
-
-![](img/access_PIP_api.png)
-
-## Documentation Page {visibility="uncounted"} {background-image="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif" background-size="700px"}
-
-<!-- ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWQ1YTMwNjk3NDE5ZTAzMjYyMzZhMjg2OTFhYjZlMzdkZjhhMTNiZCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/tkcJO0Z56CTI9fl8lc/giphy.gif){fig-align="center"} -->
-
-::: footer
-[PIP API documentation](https://pip.worldbank.org/api)
-:::
-
-## API endpoint {visibility="uncounted"}
-
-::: {style="text-align: center; margin-top: 5em"}
-[https://api.worldbank.org/pip/v1/pip?country=COL&year=2018](https://api.worldbank.org/pip/v1/pip?country=COL&year=2018){.f1 style="text-align: center"}
-:::
-
-## Breaking down the URL {visibility="uncounted"}
-
-![](img/url_breakdown.png){.absolute top="200" right="50"}
-
-::: notes
-The domain name is where the API is being hosted
-
-the path indicates the location of the resource. It says which API will be in used and what version
-
-The endpoint is like the function or the command of the API. An API could have several endpoints.
-
-The string separator or question mark separates the function from its parameters.
-
-The query string are the parameters of the endpoint. Each is separated by the ampersand (and symbol, &)
-:::
