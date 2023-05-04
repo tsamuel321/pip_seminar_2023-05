@@ -82,7 +82,7 @@ pip,  clear
 
 ``` stata
 /* To query poverty at \$2.15-a-day poverty line 
-for Bangladesh in 2016 */
+for Morocco in 2013 */
 
 pip, country(mar) year(2013) clear
 ```
@@ -142,7 +142,7 @@ fillgaps povline(6.85)
 ``` stata
 /*Or multiple thresholds*/
 
-pip, country(bgd) year(2019) clear ///
+pip, country(mar) year(2019) clear ///
 fillgaps povline(2.15 3.65 6.85 10) 
 ```
 
