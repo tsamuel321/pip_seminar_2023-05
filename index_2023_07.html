@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/tabby.min.js"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="index_2023_07_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_2023_07_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_2023_07_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_2023_07_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_2023_07_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_2023_07_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_2023_07_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="index_2023_07_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.433">
 
   <title>Stata and R PIP clients</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="index_2023_07_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_2023_07_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -94,15 +94,15 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="index_2023_07_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="css/tachyons.css">
   <link rel="stylesheet" href="css/my_style.css">
-  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link href="index_2023_07_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_2023_07_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_2023_07_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_2023_07_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="index_2023_07_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="index_2023_07_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -421,7 +421,7 @@
 <p><br></p>
 <h3 id="github-1">Github</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>net install github, from(<span class="st">"https://haghish.github.io/github/"</span>)  </span>
-<span id="cb4-2"><a href="#cb4-2"></a>github install worldbank/pip, <span class="kw">version</span>(0.9.5.9003)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a>github install worldbank/pip, <span class="kw">version</span>(0.9.5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <aside><div>
 <ul>
@@ -434,8 +434,11 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">/* To query poverty at $2.15-a-day poverty line for </span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">all countries in all survey years*/</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>pip,  <span class="kw">clear</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a># pip, <span class="kw">clear</span> country(<span class="ot">all</span>) <span class="fu">year</span>(<span class="ot">all</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a>*Short </span>
+<span id="cb5-5"><a href="#cb5-5"></a>pip,  <span class="kw">clear</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>*Long </span>
+<span id="cb5-8"><a href="#cb5-8"></a>pip, <span class="kw">clear</span> country(<span class="ot">all</span>) <span class="fu">year</span>(<span class="ot">all</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="img/pip_clear.png" class="r-stretch quarto-figure-center"></section>
 <section id="country-level-estimates-1" class="slide level2">
@@ -555,331 +558,6 @@
 <p><img data-src="img/help8.png" class="absolute fragment fade-in-then-out grow" style="top: 0px; left: 150px; "></p>
 </div>
 </section></section>
-<section>
-<section id="r-client-wrapper" class="title-slide slide level1 center">
-<h1>R Client (wrapper)</h1>
-
-</section>
-<section id="installation-2" class="slide level2">
-<h2>Installation</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"worldbank/pipr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="webpage" class="slide level2">
-<h2>Webpage</h2>
-<div style="text-align: center; margin-top: 5em">
-<p><a href="https://worldbank.github.io/pipr/" class="f1" style="text-align: center">https://worldbank.github.io/pipr/</a></p>
-</div>
-</section>
-<section id="country-level-estimates-3" class="slide level2">
-<h2>Country-level estimates</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,320 × 4
-   country_code  year poverty_line headcount
-   &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
- 1 AGO           2000         2.15   0.214  
- 2 AGO           2008         2.15   0.146  
- 3 AGO           2018         2.15   0.311  
- 4 ALB           1996         2.15   0.00535
- 5 ALB           2002         2.15   0.0109 
- 6 ALB           2005         2.15   0.00591
- 7 ALB           2008         2.15   0.00200
- 8 ALB           2012         2.15   0.00621
- 9 ALB           2014         2.15   0.0102 
-10 ALB           2015         2.15   0.00121
-# ℹ 2,310 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="country-level-estimates-4" class="slide level2">
-<h2>Country-level estimates</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"MAR"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  country_code  year poverty_line headcount
-  &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
-1 MAR           1984         2.15    0.132 
-2 MAR           1990         2.15    0.0473
-3 MAR           1998         2.15    0.0838
-4 MAR           2000         2.15    0.0793
-5 MAR           2006         2.15    0.0424
-6 MAR           2013         2.15    0.0144</code></pre>
-</div>
-</div>
-</section>
-<section id="country-level-estimates-5" class="slide level2">
-<h2>Country-level estimates</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="fu">c</span>(<span class="st">"COL"</span>, <span class="st">"MAR"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 33 × 4
-   country_code  year poverty_line headcount
-   &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
- 1 COL           1980         2.15    0.208 
- 2 MAR           1984         2.15    0.132 
- 3 COL           1988         2.15    0.152 
- 4 COL           1989         2.15    0.142 
- 5 MAR           1990         2.15    0.0473
- 6 COL           1991         2.15    0.134 
- 7 COL           1992         2.15    0.0956
- 8 COL           1996         2.15    0.176 
- 9 MAR           1998         2.15    0.0838
-10 COL           1999         2.15    0.214 
-# ℹ 23 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="country-level-estimates-6" class="slide level2">
-<h2>Country-level estimates</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"COL"</span>, <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2012</span>, <span class="dv">2018</span>))  <span class="sc">|&gt;</span> </span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  country_code  year poverty_line headcount
-  &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
-1 COL           2012         2.15    0.0672
-2 COL           2018         2.15    0.0450</code></pre>
-</div>
-</div>
-</section>
-<section id="interporlated-and-extrapolated-values" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Interporlated and Extrapolated values</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb29-1" class="hljs-ln-code"><a href="#cb29-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"HTI"</span>)  <span class="sc">|&gt;</span> </span>
-<span id="cb29-2" class="hljs-ln-code"><a href="#cb29-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 4
-  country_code  year poverty_line headcount
-  &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
-1 HTI           2001         2.15     0.678
-2 HTI           2012         2.15     0.292
-3 HTI           2012         2.15     0.579</code></pre>
-</div>
-</div>
-</section>
-<section id="interporlated-and-extrapolated-values-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Interporlated and Extrapolated values</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb31-1" class="hljs-ln-code"><a href="#cb31-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"HTI"</span>, <span class="at">fill_gaps =</span> <span class="cn">TRUE</span>)   <span class="sc">|&gt;</span> </span>
-<span id="cb31-2" class="hljs-ln-code"><a href="#cb31-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 41 × 4
-   country_code  year poverty_line headcount
-   &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
- 1 HTI           1981         2.15     0.513
- 2 HTI           1982         2.15     0.532
- 3 HTI           1983         2.15     0.538
- 4 HTI           1984         2.15     0.545
- 5 HTI           1985         2.15     0.550
- 6 HTI           1986         2.15     0.563
- 7 HTI           1987         2.15     0.572
- 8 HTI           1988         2.15     0.763
- 9 HTI           1989         2.15     0.778
-10 HTI           1990         2.15     0.775
-# ℹ 31 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="poverty-line" class="slide level2">
-<h2>Poverty line</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>pipr<span class="sc">::</span><span class="fu">get_stats</span>(<span class="at">country =</span> <span class="st">"COL"</span>, <span class="at">povline =</span> <span class="dv">3</span>)  <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27 × 4
-   country_code  year poverty_line headcount
-   &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
- 1 COL           1980            3     0.299
- 2 COL           1988            3     0.234
- 3 COL           1989            3     0.231
- 4 COL           1991            3     0.214
- 5 COL           1992            3     0.175
- 6 COL           1996            3     0.270
- 7 COL           1999            3     0.309
- 8 COL           2000            3     0.258
- 9 COL           2001            3     0.319
-10 COL           2002            3     0.231
-# ℹ 17 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="multiple-poverty-lines" class="slide level2">
-<h2>Multiple Poverty lines</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>povlines <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">10</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">map_df</span>(<span class="at">.x      =</span> povlines, </span>
-<span id="cb35-3"><a href="#cb35-3"></a>       <span class="at">.f      =</span> pipr<span class="sc">::</span>get_stats, </span>
-<span id="cb35-4"><a href="#cb35-4"></a>       <span class="at">country =</span> <span class="st">"COL"</span>,</span>
-<span id="cb35-5"><a href="#cb35-5"></a>       <span class="at">year    =</span> <span class="dv">2012</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">select</span>(<span class="fu">c</span>(country_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-  country_code  year poverty_line headcount
-  &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
-1 COL           2012            2    0.0588
-2 COL           2012            4    0.194 
-3 COL           2012            6    0.344 
-4 COL           2012           10    0.563 </code></pre>
-</div>
-</div>
-</section>
-<section id="global-estimates" class="slide level2">
-<h2>Global estimates</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>pipr<span class="sc">::</span><span class="fu">get_wb</span>()  <span class="sc">|&gt;</span> </span>
-<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">arrange</span>(year) <span class="sc">|&gt;</span> </span>
-<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">select</span>(<span class="fu">c</span>(region_code, year, poverty_line, headcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 347 × 4
-   region_code  year poverty_line headcount
-   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;
- 1 OHI          1981          1.9   0.00518
- 2 LAC          1981          1.9   0.126  
- 3 SAS          1981          1.9   0.487  
- 4 EAP          1981          1.9   0.787  
- 5 WLD          1981          1.9   0.393  
- 6 OHI          1982          1.9   0.00564
- 7 LAC          1982          1.9   0.132  
- 8 SAS          1982          1.9   0.483  
- 9 EAP          1982          1.9   0.763  
-10 WLD          1982          1.9   0.388  
-# ℹ 337 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="many-more-functions" class="slide level2">
-<h2>Many more functions</h2>
-
-<img data-src="img/pipr_functions.png" class="r-stretch quarto-figure-center"></section>
-<section class="slide level2">
-
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">plot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># Global poverty trends 1990-2019</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a>df <span class="ot">&lt;-</span> pipr<span class="sc">::</span><span class="fu">get_wb</span>() <span class="sc">|&gt;</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1989</span>, region_code <span class="sc">==</span> <span class="st">"WLD"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb39-5"><a href="#cb39-5"></a>    <span class="at">pop_in_poverty =</span> <span class="fu">round</span>(pop_in_poverty <span class="sc">/</span> <span class="dv">1000000</span>, <span class="dv">0</span>),</span>
-<span id="cb39-6"><a href="#cb39-6"></a>    <span class="at">headcount =</span> <span class="fu">round</span>(headcount, <span class="dv">3</span>)</span>
-<span id="cb39-7"><a href="#cb39-7"></a>  )</span>
-<span id="cb39-8"><a href="#cb39-8"></a></span>
-<span id="cb39-9"><a href="#cb39-9"></a>headcount_col <span class="ot">&lt;-</span> <span class="st">"#E69F00"</span></span>
-<span id="cb39-10"><a href="#cb39-10"></a></span>
-<span id="cb39-11"><a href="#cb39-11"></a>gr <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span></span>
-<span id="cb39-12"><a href="#cb39-12"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> headcount <span class="sc">*</span> <span class="dv">100</span>, </span>
-<span id="cb39-13"><a href="#cb39-13"></a>                <span class="at">y     =</span> headcount), </span>
-<span id="cb39-14"><a href="#cb39-14"></a>            <span class="at">vjust   =</span> <span class="dv">1</span>, </span>
-<span id="cb39-15"><a href="#cb39-15"></a>            <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.02</span>, </span>
-<span id="cb39-16"><a href="#cb39-16"></a>            <span class="at">color   =</span> headcount_col) <span class="sc">+</span></span>
-<span id="cb39-17"><a href="#cb39-17"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pop_in_poverty, </span>
-<span id="cb39-18"><a href="#cb39-18"></a>                <span class="at">y     =</span> pop_in_poverty <span class="sc">/</span> <span class="dv">5000</span>), </span>
-<span id="cb39-19"><a href="#cb39-19"></a>            <span class="at">vjust   =</span> <span class="dv">0</span>, </span>
-<span id="cb39-20"><a href="#cb39-20"></a>            <span class="at">nudge_y =</span> <span class="fl">0.02</span>) <span class="sc">+</span></span>
-<span id="cb39-21"><a href="#cb39-21"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y  =</span> headcount), <span class="at">color =</span> headcount_col) <span class="sc">+</span></span>
-<span id="cb39-22"><a href="#cb39-22"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y  =</span> pop_in_poverty <span class="sc">/</span> <span class="dv">5000</span>)) <span class="sc">+</span></span>
-<span id="cb39-23"><a href="#cb39-23"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> headcount), <span class="at">color =</span> headcount_col) <span class="sc">+</span></span>
-<span id="cb39-24"><a href="#cb39-24"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> pop_in_poverty <span class="sc">/</span> <span class="dv">5000</span>)) <span class="sc">+</span></span>
-<span id="cb39-25"><a href="#cb39-25"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb39-26"><a href="#cb39-26"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent,</span>
-<span id="cb39-27"><a href="#cb39-27"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>),</span>
-<span id="cb39-28"><a href="#cb39-28"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>),</span>
-<span id="cb39-29"><a href="#cb39-29"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">*</span><span class="dv">5000</span>, <span class="at">name =</span> <span class="st">"Number of poor (million)"</span>,</span>
-<span id="cb39-30"><a href="#cb39-30"></a>                        <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>, <span class="dv">2000</span>))) <span class="sc">+</span></span>
-<span id="cb39-31"><a href="#cb39-31"></a>  <span class="fu">labs</span>(</span>
-<span id="cb39-32"><a href="#cb39-32"></a>    <span class="at">title =</span> <span class="st">"Global poverty trends 1990-2019"</span>,</span>
-<span id="cb39-33"><a href="#cb39-33"></a>    <span class="at">y =</span> <span class="st">"Poverty rate (%)"</span>,</span>
-<span id="cb39-34"><a href="#cb39-34"></a>    <span class="at">x =</span> <span class="st">""</span></span>
-<span id="cb39-35"><a href="#cb39-35"></a>  ) <span class="sc">+</span></span>
-<span id="cb39-36"><a href="#cb39-36"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">plot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># Number of poor by region</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a>df <span class="ot">&lt;-</span> pipr<span class="sc">::</span><span class="fu">get_wb</span>() <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1989</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-4"><a href="#cb40-4"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-5"><a href="#cb40-5"></a>    <span class="at">pop_in_poverty =</span> <span class="fu">round</span>(pop_in_poverty <span class="sc">/</span> <span class="dv">1000000</span>, <span class="dv">0</span>),</span>
-<span id="cb40-6"><a href="#cb40-6"></a>    <span class="at">headcount =</span> <span class="fu">round</span>(headcount, <span class="dv">3</span>)</span>
-<span id="cb40-7"><a href="#cb40-7"></a>  )</span>
-<span id="cb40-8"><a href="#cb40-8"></a></span>
-<span id="cb40-9"><a href="#cb40-9"></a>regions <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb40-10"><a href="#cb40-10"></a>  <span class="fu">filter</span>(<span class="sc">!</span>region_code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"WLD"</span>, <span class="st">"AFE"</span>, <span class="st">"AFW"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb40-11"><a href="#cb40-11"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb40-12"><a href="#cb40-12"></a>    <span class="at">region_name =</span> <span class="fu">fct_relevel</span>(region_name,</span>
-<span id="cb40-13"><a href="#cb40-13"></a>                               <span class="fu">c</span>(<span class="st">"Other high Income"</span>,</span>
-<span id="cb40-14"><a href="#cb40-14"></a>                                 <span class="st">"Europe and Central Asia"</span>,</span>
-<span id="cb40-15"><a href="#cb40-15"></a>                                 <span class="st">"Middle East and North Africa"</span>,</span>
-<span id="cb40-16"><a href="#cb40-16"></a>                                 <span class="st">"Latin America and the Caribbean"</span>,</span>
-<span id="cb40-17"><a href="#cb40-17"></a>                                 <span class="st">"East Asia and Pacific"</span>,</span>
-<span id="cb40-18"><a href="#cb40-18"></a>                                 <span class="st">"South Asia"</span>,</span>
-<span id="cb40-19"><a href="#cb40-19"></a>                                 <span class="st">"Sub-Saharan Africa"</span></span>
-<span id="cb40-20"><a href="#cb40-20"></a>                                 ))</span>
-<span id="cb40-21"><a href="#cb40-21"></a>  )</span>
-<span id="cb40-22"><a href="#cb40-22"></a></span>
-<span id="cb40-23"><a href="#cb40-23"></a>world <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb40-24"><a href="#cb40-24"></a>  <span class="fu">filter</span>(region_code <span class="sc">==</span> <span class="st">"WLD"</span>)</span>
-<span id="cb40-25"><a href="#cb40-25"></a></span>
-<span id="cb40-26"><a href="#cb40-26"></a>gr2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(regions, <span class="fu">aes</span>(<span class="at">y =</span> pop_in_poverty, </span>
-<span id="cb40-27"><a href="#cb40-27"></a>                           <span class="at">x =</span> year, </span>
-<span id="cb40-28"><a href="#cb40-28"></a>                           <span class="at">fill =</span> region_name)) <span class="sc">+</span></span>
-<span id="cb40-29"><a href="#cb40-29"></a>  <span class="fu">geom_area</span>() <span class="sc">+</span></span>
-<span id="cb40-30"><a href="#cb40-30"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb40-31"><a href="#cb40-31"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2000</span>),</span>
-<span id="cb40-32"><a href="#cb40-32"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>, <span class="dv">2000</span>)</span>
-<span id="cb40-33"><a href="#cb40-33"></a>  ) <span class="sc">+</span></span>
-<span id="cb40-34"><a href="#cb40-34"></a>  <span class="fu">scale_fill_tableau</span>(<span class="at">palette =</span> <span class="st">"Tableau 10"</span>) <span class="sc">+</span></span>
-<span id="cb40-35"><a href="#cb40-35"></a>  <span class="fu">labs</span>(</span>
-<span id="cb40-36"><a href="#cb40-36"></a>    <span class="at">title =</span> <span class="st">"Number of poor by region"</span>,</span>
-<span id="cb40-37"><a href="#cb40-37"></a>    <span class="at">y =</span> <span class="st">"Number of poor (million)"</span>,</span>
-<span id="cb40-38"><a href="#cb40-38"></a>    <span class="at">x =</span> <span class="st">""</span></span>
-<span id="cb40-39"><a href="#cb40-39"></a>  ) <span class="sc">+</span></span>
-<span id="cb40-40"><a href="#cb40-40"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb40-41"><a href="#cb40-41"></a>  <span class="fu">theme</span>(</span>
-<span id="cb40-42"><a href="#cb40-42"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb40-43"><a href="#cb40-43"></a>  ) <span class="sc">+</span></span>
-<span id="cb40-44"><a href="#cb40-44"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> world, </span>
-<span id="cb40-45"><a href="#cb40-45"></a>            <span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), </span>
-<span id="cb40-46"><a href="#cb40-46"></a>            <span class="at">alpha =</span>.<span class="dv">5</span>, </span>
-<span id="cb40-47"><a href="#cb40-47"></a>            <span class="at">linetype =</span> <span class="st">"longdash"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-2-2">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section></section>
 <section id="thanks." class="title-slide slide level1 center">
 <h1>Thanks.</h1>
 
@@ -891,20 +569,20 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_2023_07_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

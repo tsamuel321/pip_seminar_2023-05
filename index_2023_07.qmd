@@ -1,0 +1,249 @@
+---
+title: "Stata and R PIP clients"
+subtitle: "Accessing the World Bank's estimates of poverty and inequality"
+format:
+  revealjs:
+    theme: dark
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    # preview-links: auto
+    logo: img/WB-PIP-E-horizontal-RGB-med.png
+    css: 
+      - css/tachyons.css
+      - css/my_style.css
+    footer: <https://pip.worldbank.org>
+---
+
+# The `pip` Stata client (wrapper)
+
+## Installation
+
+### SSC
+
+``` stata
+ssc install pip
+```
+
+<br />
+
+### Github
+
+``` stata
+net install github, from("https://haghish.github.io/github/")  
+github install worldbank/pip
+```
+
+## Installation
+
+### SSC
+
+``` stata
+ssc install pip
+```
+
+<br />
+
+### Github
+
+```{r}
+#| echo: false
+#| cache: true
+rl <- gh::gh("/repos/worldbank/pip/releases") |> 
+  {\(.) .[[1]]$tag_name}()
+```
+
+``` stata
+net install github, from("https://haghish.github.io/github/")  
+github install worldbank/pip, version(`r rl`)
+```
+
+::: aside
+-   Official website <https://worldbank.github.io/pip/>
+-   Report issues at <https://github.com/worldbank/pip/issues>
+:::
+
+## Country-level estimates
+
+``` stata
+/* To query poverty at $2.15-a-day poverty line for 
+all countries in all survey years*/
+
+*Short 
+pip,  clear
+
+*Long 
+pip, clear country(all) year(all)  
+```
+
+![](img/pip_clear.png){fig-align="center"}
+
+## Country-level estimates
+
+``` stata
+/* To query poverty at \$2.15-a-day poverty line 
+for Morocco in 2013 */
+
+pip, country(mar) year(2013) clear
+```
+
+![](img/pip_mar_2013.png){fig-align="center"}
+
+## Country-level estimates
+
+``` stata
+/* For extrapolated and interpolated data that 
+underpin the global and regional poverty numbers, use 
+`fillgaps` option */
+
+pip, country(mar) year(2019) clear fillgaps
+```
+
+![](img/pip_mar_2019_fillgaps.png){fig-align="center"}
+
+## Global and regional poverty estimates
+
+``` stata
+pip wb, clear
+```
+
+![](img/pip_wb.png){.absolute top="200" left="50" height="300"}
+
+## Global and regional poverty estimates
+
+``` stata
+pip wb, clear
+
+/* Query a particular region or global values with `region()` */
+
+pip wb, clear region(wld)
+pip wb, clear region(lac)
+```
+
+![](img/pip_wb_lac.png){.absolute top="262" left="50" height="300"}
+
+## Poverty lines
+
+``` stata
+/*Query poverty at other thresholds*/
+
+pip, country(mar) year(2019) clear ///
+fillgaps povline(6.85)
+```
+
+![](img/pip_mar_2019_fillgaps_685.png){fig-align="center"}
+
+## Poverty lines
+
+``` stata
+/*Or multiple thresholds*/
+
+pip, country(mar) year(2019) clear ///
+fillgaps povline(2.15 3.65 6.85 10) 
+```
+
+![](img/pip_mar_2019_fillgaps_mpl.png){fig-align="center"}
+
+## Data availability {.scrollable}
+
+``` stata
+pip info, clear
+```
+
+![](img/pip_info.png){fig-align="center"}
+
+::: aside
+clickable
+:::
+
+## Data availability
+
+``` stata
+pip, country(mar) year(2019) clear
+```
+
+![](img/no_data.png){fig-align="center"}
+
+## Replicability
+
+``` stata
+pip version, clear
+```
+
+![](img/versions_prod.png){.absolute top="200" left="200" height="300"}
+
+## Towards distributional analysis
+
+``` stata
+pip, country(mar) year(2019) clear fillgaps popshare(0.5)
+```
+
+![](img/pip_mar_2019_fillgaps_popsahre05.png){fig-align="center"}
+
+## Towards distributional analysis {auto-animate="true"}
+
+``` stata
+numlist ".3(.1).8"
+pip, country(mar) year(2019) clear fillgaps ///
+    popshare(`r(numlist)') n2disp(6)
+```
+
+![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
+
+## Towards distributional analysis {auto-animate="true"}
+
+``` stata
+numlist ".3(.1).8"
+pip, country(mar) year(2019) clear fillgaps ///
+    popshare(`r(numlist)') n2disp(6)
+```
+
+![](img/pip_mar_2019_fillgaps_popsahre_mps.png){fig-align="center"}
+
+::: {style="text-align: center; margin-top: 1em"}
+[PIP Percentiles data](https://datacatalog.worldbank.org/search/dataset/0063646/_poverty_and_inequality_platform_pip_percentiles){style="text-align: center"}
+:::
+
+## Auxiliary Data {.scrollable}
+
+``` stata
+pip tables, clear
+```
+
+![](img/aux_data.png){fig-align="center"}
+
+Alternatively
+
+``` stata
+pip tables, table(cpi) clear
+
+pip tables, table(interpolated_means) clear
+```
+
+## Help file
+
+::: r-stack
+![](img/help1.png){.fragment .fade-in-then-semi-out}
+
+![](img/help2.png){.absolute .fragment .fade-in-then-semi-out top="0" left="0"}
+
+![](img/help3.png){.absolute .fragment .fade-in-then-semi-out top="100" left="500"}
+
+![](img/help4.png){.absolute .fragment .fade-in-then-semi-out top="200" left="-100"}
+
+![](img/help5.png){.absolute .fragment .fade-in-then-semi-out top="250" left="200"}
+
+![](img/help6_1.png){.absolute .fragment .fade-in-then-semi-out top="0" left="500"}
+
+![](img/help6_2.png){.absolute .fragment .fade-in-then-semi-out top="0" left="500"}
+
+![](img/help6_3.png){.absolute .fragment .fade-in-then-semi-out top="0" left="500"}
+
+![](img/help7_1.png){.absolute .fragment .fade-in-then-semi-out top="50" left="-100"}
+
+![](img/help7_2.png){.absolute .fragment .fade-in-then-semi-out top="50" left="-100"}
+
+![](img/help8.png){.absolute .fragment .fade-in-then-out .grow top="0" left="150"}
+:::
+
+# Thanks.

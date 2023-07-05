@@ -70,6 +70,7 @@ github install worldbank/pip, version(`r rl`)
 all countries in all survey years*/
 
 pip,  clear
+# pip, clear country(all) year(all)  
 ```
 
 ![](img/pip_clear.png){fig-align="center"}
@@ -247,7 +248,7 @@ pip tables, table(interpolated_means) clear
 ```{r}
 #| echo: false
 #| cache: false
-library(pipr)
+#library(pipr)
 library(tidyverse)
 library(ggthemes)
 ```
@@ -360,7 +361,7 @@ pipr::get_wb()  |>
 #| echo: true
 
 # Global poverty trends 1990-2019
-df <- get_wb() |>
+df <- pipr::get_wb() |>
   filter(year > 1989, region_code == "WLD") |>
   mutate(
     pop_in_poverty = round(pop_in_poverty / 1000000, 0),
@@ -415,7 +416,7 @@ gr
 #| echo: true
 
 # Number of poor by region
-df <- get_wb() |>
+df <- pipr::get_wb() |>
   filter(year > 1989 & year < 2019) |>
   mutate(
     pop_in_poverty = round(pop_in_poverty / 1000000, 0),
